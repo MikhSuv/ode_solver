@@ -1,8 +1,16 @@
+! Abstract interface describing the right-hand side of an ODE system.
 module rhs_function_interface
   use precision_mod
   implicit none
 
   abstract interface
+    ! Evaluate dX/dt = f(t, X).
+    !
+    ! Arguments:
+    !   t  - current time;
+    !   x  - state vector.
+    ! Result:
+    !   dx - derivative of the state vector, same size as x.
     function ode_rhs(t, x) result(dx)
       import :: dp
       real(dp), intent(in) :: t
